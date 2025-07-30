@@ -1,4 +1,9 @@
-import { Routes as RouterRoutes, Route, Navigate } from "react-router-dom";
+import {
+  Routes as RouterRoutes,
+  Route,
+  Navigate,
+  useNavigate,
+} from "react-router-dom";
 import { useAuth } from "./contexts/AuthContext";
 import Login from "./pages/Login";
 import EstablishmentInfoEdit from "./pages/EstablishmentInfoEdit";
@@ -8,6 +13,7 @@ import ProductsPage from "./pages/Products";
 
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
   const { user, isAuthenticated, isLoading } = useAuth();
+  const navigate = useNavigate();
 
   // Se está carregando, mostrar loading
   if (isLoading) {
@@ -27,7 +33,7 @@ function ProtectedRoute({ children }: { children: React.ReactNode }) {
 
   // Se não está autenticado, redirecionar para login
   if (!isAuthenticated || !user) {
-    return <span>AUten</span>;
+    navigate("/login");
   }
 
   return <>{children}</>;

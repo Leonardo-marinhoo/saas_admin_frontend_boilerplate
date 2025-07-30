@@ -1,8 +1,8 @@
-import { createContext, useContext } from "react";
+import { createContext, useContext, useEffect } from "react";
 import type { ReactNode } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { useLoginMutation } from "../services/api/authApi";
+import { useGetMeQuery, useLoginMutation } from "../services/api/authApi";
 import { setCredentials, logout } from "../store/authSlice";
 import type { RootState } from "../store";
 import type { User } from "../types/auth";
@@ -20,9 +20,14 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 export function AuthProvider({ children }: { children: ReactNode }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { user, isAuthenticated, isLoading } = useSelector(
+  const { user, isAuthenticated, token, isLoading } = useSelector(
     (state: RootState) => state.auth
   );
+  const {
+    data: getMeData,
+    isLoading: isGetMeLoading,
+    error: getMeError,
+  } = useGetMeQuery();
 
   const [login] = useLoginMutation();
 
@@ -53,6 +58,27 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     dispatch(logout());
     navigate("/login");
   };
+  const verifyAuth = () => {
+    if (getMeError) {
+      alert("erro autenticação");
+    }
+    if (getMeData) {
+      dispatch(
+        setCredentials({
+          user: { ...getMeData },
+          token: token!,
+          role_type: getMeData.role?.type,
+        })
+      );
+      alert("reautenticado");
+    }
+  };
+
+  useEffect(() => {
+    if (!isAuthenticated) {
+      verifyAuth();
+    }
+  }, [getMeData]);
 
   return (
     <AuthContext.Provider

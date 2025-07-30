@@ -13,7 +13,7 @@ interface AuthState {
 const initialState: AuthState = {
   user: null,
   token: localStorage.getItem("token"),
-  isAuthenticated: !!localStorage.getItem("token"),
+  isAuthenticated: false,
   isLoading: !!localStorage.getItem("token"), // Se há token, começa carregando
   role_type: localStorage.getItem("role_type"),
 };
