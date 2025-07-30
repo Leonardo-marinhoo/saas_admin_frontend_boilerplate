@@ -1,8 +1,8 @@
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
 import * as S from "./styles";
-import logo from "../../assets/logo.png";
-import logoColapsed from "../../assets/logo-colapsed.png";
+import logo from "../../assets/logo (1).png";
+import logoColapsed from "../../assets/logo (1).png";
 
 import { MdChevronRight } from "react-icons/md";
 import { TbLayoutSidebarLeftCollapseFilled } from "react-icons/tb";
@@ -52,7 +52,7 @@ export function Sidebar({
   return (
     <S.Aside $collapsed={collapsed}>
       <S.Logo $collapsed={collapsed}>
-        <S.CollapseButtonWrapper>
+        {/* <S.CollapseButtonWrapper>
           <S.CollapseButton
             aria-label={collapsed ? "Expandir menu" : "Colapsar menu"}
             onClick={(e) => {
@@ -67,18 +67,19 @@ export function Sidebar({
               <TbLayoutSidebarLeftCollapseFilled size={28} />
             )}
           </S.CollapseButton>
-        </S.CollapseButtonWrapper>
+        </S.CollapseButtonWrapper> */}
         <S.LogoLink href="#">
           {collapsed ? (
             <S.LogoImageCollapsed src={logoColapsed} alt="FoodIA Logo" />
           ) : (
-            <S.LogoImage src={logo} alt="FoodIA Logo" />
+            <>
+              <S.LogoImage src={logo} alt="FoodIA Logo" />
+            </>
           )}
         </S.LogoLink>
-        <S.Divider />
       </S.Logo>
       <S.Nav>
-        {sidebarLinks.map((item) => (
+        {sidebarLinks?.map((item) => (
           <S.NavLink
             as={Link}
             to={item.to}

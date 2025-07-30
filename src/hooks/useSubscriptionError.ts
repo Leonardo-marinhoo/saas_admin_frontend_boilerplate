@@ -59,5 +59,5 @@ export function useSubscriptionError(error: any) {
         navigate(redirectUrl);
       }
     }
-  }, [error, navigate]);
+  }, []);
 }

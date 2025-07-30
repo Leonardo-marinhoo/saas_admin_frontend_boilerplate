@@ -295,7 +295,7 @@ export default function EstablishmentInfoEdit() {
                 <CardDetails>
                   <CardMainInfo>
                     <CardNumberLabel>Plano</CardNumberLabel>
-                    <CardNumber>Menu Flow Premium</CardNumber>
+                    <CardNumber>Método Educacional Pro</CardNumber>
                     <CardName>{tenantInfo.subscription.status}</CardName>
                   </CardMainInfo>
                   <CardValidBlock>
@@ -394,60 +394,6 @@ export default function EstablishmentInfoEdit() {
         {/* Fim Sessão do Plano */}
 
         {/* Seção Taxa de Delivery */}
-        <DeliveryTaxSection>
-          <Flex direction="column" gap="16px">
-            <Flex direction="column" gap="8px">
-              <Heading size="4" weight="medium">
-                Taxa de Delivery
-              </Heading>
-              <Text color="gray" size="3">
-                Configure o valor da taxa de delivery por quilômetro rodado
-              </Text>
-            </Flex>
-
-            <Flex direction="row" gap="16px" align="end">
-              <Flex direction="column" gap="4px">
-                <Text weight="medium" size="2">
-                  Taxa por KM (R$)
-                </Text>
-                <DeliveryTaxInput
-                  type="text"
-                  value={deliveryTax}
-                  onChange={(e) => setDeliveryTax(e.target.value)}
-                  placeholder="0.00"
-                  maxLength={10}
-                />
-              </Flex>
-              <UpdateButton
-                onClick={handleUpdateDeliveryTax}
-                disabled={isUpdatingDeliveryTax}
-              >
-                {isUpdatingDeliveryTax ? (
-                  "Atualizando..."
-                ) : (
-                  <>
-                    <svg
-                      width="16"
-                      height="16"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    >
-                      <path d="M21 2v6h-6" />
-                      <path d="M3 12a9 9 0 0 1 15-6.7L21 8" />
-                      <path d="M3 22v-6h6" />
-                      <path d="M21 12a9 9 0 0 1-15 6.7L3 16" />
-                    </svg>
-                    Atualizar
-                  </>
-                )}
-              </UpdateButton>
-            </Flex>
-          </Flex>
-        </DeliveryTaxSection>
 
         <Card $isEditing={isEditing}>
           <Flex direction="column" gap="24px">
@@ -457,18 +403,6 @@ export default function EstablishmentInfoEdit() {
                   Configurações do Estabelecimento
                 </Heading>
                 <Flex align="center" gap="16px">
-                  <Text weight="medium" size="2">
-                    Aceitando Pedidos
-                  </Text>
-                  <SwitchContainer>
-                    <SwitchInput
-                      type="checkbox"
-                      checked={isReceivingOrders}
-                      onChange={handleToggleReceivingOrders}
-                      disabled={isUpdatingStatus}
-                    />
-                    <SwitchSlider />
-                  </SwitchContainer>
                   {!isEditing && (
                     <Button onClick={handleEdit} size="3">
                       Editar

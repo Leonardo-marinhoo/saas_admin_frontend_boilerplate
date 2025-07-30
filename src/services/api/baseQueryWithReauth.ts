@@ -15,36 +15,36 @@ export const baseQueryWithReauth: BaseQueryFn<
 
   console.log("baseQueryWithReauth - result:", result);
 
-  if (result.error && result.error.status === 401) {
-    // Token inválido - limpar localStorage e redirecionar para login
-    localStorage.removeItem("token");
+  // if (result.error && result.error.status === 401) {
+  //   // Token inválido - limpar localStorage e redirecionar para login
+  //   localStorage.removeItem("token");
 
-    // Redirecionar para login apenas se não estiver já na página de login
-    if (window.location.pathname !== "/login") {
-      window.location.href = "/login";
-    }
-  }
+  //   // Redirecionar para login apenas se não estiver já na página de login
+  //   if (window.location.pathname !== "/login") {
+  //     window.location.href = "/login";
+  //   }
+  // }
 
   // Intercepta resposta do getMe para garantir role_type persistente
-  if (
-    args &&
-    typeof args === "object" &&
-    "url" in args &&
-    typeof (args as any).url === "string" &&
-    (args as any).url.includes("tenant/user")
-  ) {
-    if (
-      result.data &&
-      typeof result.data === "object" &&
-      "role" in result.data &&
-      result.data.role &&
-      typeof result.data.role === "object" &&
-      "type" in result.data.role &&
-      typeof result.data.role.type === "string"
-    ) {
-      localStorage.setItem("role_type", result.data.role.type);
-    }
-  }
+  // if (
+  //   args &&
+  //   typeof args === "object" &&
+  //   "url" in args &&
+  //   typeof (args as any).url === "string" &&
+  //   (args as any).url.includes("tenant/user")
+  // ) {
+  //   if (
+  //     result.data &&
+  //     typeof result.data === "object" &&
+  //     "role" in result.data &&
+  //     result.data.role &&
+  //     typeof result.data.role === "object" &&
+  //     "type" in result.data.role &&
+  //     typeof result.data.role.type === "string"
+  //   ) {
+  //     localStorage.setItem("role_type", result.data.role.type);
+  //   }
+  // }
 
   // Verificar se a resposta contém erro de assinatura (tanto em data quanto em error)
   let subscriptionError: SubscriptionError | null = null;

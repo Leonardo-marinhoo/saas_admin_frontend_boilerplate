@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useGetMeQuery } from "../services/api/authApi";
-import { logout, setLoading, setCredentials } from "../store/authSlice";
+import { logout, setCredentials } from "../store/authSlice";
 import type { RootState } from "../store";
 
 export function AuthInitializer({ children }: { children: React.ReactNode }) {
@@ -19,7 +19,7 @@ export function AuthInitializer({ children }: { children: React.ReactNode }) {
   });
 
   useEffect(() => {
-    if (userData) {
+    if (userData && userData !== user) {
       dispatch(
         setCredentials({
           user: userData,
@@ -28,21 +28,25 @@ export function AuthInitializer({ children }: { children: React.ReactNode }) {
         })
       );
     }
-  }, [userData, dispatch, token]);
+  }, [userData, user, dispatch, token]);
 
   useEffect(() => {
     if (error && isAuthenticated) {
-      // Se há erro e o usuário está marcado como autenticado, fazer logout
-      dispatch(logout());
+      if (error) {
+        // Especificamente para autenticação falha
+        dispatch(logout());
+      } else {
+        console.error("Outro erro ocorreu:", error);
+      }
     }
   }, [error, isAuthenticated, dispatch]);
 
-  // Se não está autenticado, não mostrar loading
-  if (!isAuthenticated) {
+  // Não mostrar nada se autorizado não está, e não está carregando
+  if (!isAuthenticated && !isLoading) {
     return <>{children}</>;
   }
 
-  // Mostrar loading apenas se estiver carregando e não tem dados do usuário
+  // Mostrar carregamento apenas enquanto não tem usuário e está carregando
   if (isLoading && !user) {
     return (
       <div
@@ -58,10 +62,10 @@ export function AuthInitializer({ children }: { children: React.ReactNode }) {
     );
   }
 
-  // Se tem dados do usuário, parar de carregar
-  if (user && isLoading) {
-    dispatch(setLoading(false));
+  // Quando usuário está presente, não precisa mais mostrar carregando
+  if (user) {
+    return <>{children}</>;
   }
 
-  return <>{children}</>;
+  return null; // Garantir que qualquer outro estado retorne null para evitar erros
 }

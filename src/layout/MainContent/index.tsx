@@ -1,5 +1,6 @@
 import React from "react";
 import { MainContentWrapper } from "./styles";
+import { useLocation } from "react-router-dom";
 
 interface MainContentProps {
   hideSidebar?: boolean;
@@ -7,12 +8,18 @@ interface MainContentProps {
   children: React.ReactNode;
 }
 
-export const MainContent: React.FC<MainContentProps> = ({
+export const MainContent = ({
   hideSidebar,
   collapsed,
   children,
-}) => (
-  <MainContentWrapper hideSidebar={hideSidebar} collapsed={collapsed}>
-    {children}
-  </MainContentWrapper>
-);
+}: MainContentProps) => {
+  const location = useLocation();
+
+  return location.pathname === "/login" ? (
+    <>{children}</>
+  ) : (
+    <MainContentWrapper hideSidebar={hideSidebar} collapsed={collapsed}>
+      {children}
+    </MainContentWrapper>
+  );
+};

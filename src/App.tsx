@@ -1,12 +1,10 @@
 import { BrowserRouter as Router, useLocation } from "react-router-dom";
 import { AuthProvider } from "./contexts/AuthContext";
-import { AuthInitializer } from "./components/AuthInitializer";
 import { Routes } from "./routes";
 import { GlobalStyle } from "./styles/globalStyles";
 import { DesktopSidebar } from "./layout/DesktopSidebar";
 import { DesktopHeader } from "./layout/DesktopHeader";
 import { MobileHeaderWrapper } from "./layout/MobileHeaderWrapper";
-import { AppContainer } from "./layout/AppContainer";
 import { MainContent } from "./layout/MainContent";
 import { useGetTenantInfoQuery } from "./services/api/tenantApi";
 import { useSubscriptionError } from "./hooks/useSubscriptionError";
@@ -16,18 +14,6 @@ function getPageTitle(pathname: string) {
   switch (pathname) {
     case "/dashboard":
       return "Dashboard";
-    case "/pdv":
-      return "PDV";
-    case "/products":
-      return "Produtos";
-    case "/categories":
-      return "Categorias";
-    case "/orders":
-      return "Pedidos";
-    case "/comandas":
-      return "Comandas";
-    case "/establishment-info-edit":
-      return "Estabelecimento";
     default:
       return "";
   }
@@ -44,7 +30,7 @@ function AppContent() {
   useSubscriptionError(tenantError);
 
   return (
-    <AppContainer>
+    <>
       {/* Desktop Sidebar - apenas em telas grandes */}
       {!hideSidebar && (
         <DesktopSidebar
@@ -68,7 +54,7 @@ function AppContent() {
       <MainContent hideSidebar={hideSidebar} collapsed={sidebarCollapsed}>
         <Routes />
       </MainContent>
-    </AppContainer>
+    </>
   );
 }
 
@@ -78,9 +64,7 @@ export default function App() {
       <GlobalStyle />
       <Router>
         <AuthProvider>
-          <AuthInitializer>
-            <AppContent />
-          </AuthInitializer>
+          <AppContent />
         </AuthProvider>
       </Router>
     </>

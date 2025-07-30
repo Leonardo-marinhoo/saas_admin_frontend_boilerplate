@@ -2,7 +2,7 @@ import { useState } from "react";
 import styled from "styled-components";
 import { theme } from "../../styles/theme";
 import { useAuth } from "../../contexts/AuthContext";
-import logo from "../../assets/logo-login.png";
+import logo from "../../assets/logo (1).png";
 
 const Container = styled.div`
   min-height: 100vh;
@@ -10,7 +10,7 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   padding: ${theme.spacing.md};
-  background: ${theme.colors.background};
+  background: #15152e;
 
   @media (max-width: ${theme.breakpoints.sm}) {
     padding: ${theme.spacing.sm};
@@ -18,12 +18,13 @@ const Container = styled.div`
 `;
 
 const LoginCard = styled.div`
-  background: ${theme.colors.surface};
+  background: #2b2b5e;
   padding: ${theme.spacing.xl};
   border-radius: ${theme.borderRadius.lg};
   box-shadow: ${theme.shadows.lg};
   width: 100%;
   max-width: 400px;
+  color: white;
 
   @media (max-width: ${theme.breakpoints.sm}) {
     padding: ${theme.spacing.lg};
@@ -64,7 +65,7 @@ const LogoImage = styled.img`
 const Title = styled.h1`
   font-size: ${theme.typography.fontSize.xl};
   font-weight: normal;
-  color: ${theme.colors.text};
+  color: white;
   margin-bottom: ${theme.spacing.lg};
   text-align: center;
 
@@ -97,7 +98,7 @@ const FormGroup = styled.div`
 const Label = styled.label`
   font-size: ${theme.typography.fontSize.sm};
   font-weight: ${theme.typography.fontWeight.medium};
-  color: ${theme.colors.text};
+  color: white;
 
   @media (max-width: 480px) {
     font-size: ${theme.typography.fontSize.xs};
@@ -131,7 +132,7 @@ const Input = styled.input`
 `;
 
 const Button = styled.button`
-  background: ${theme.colors.primary};
+  background: #4d4daa;
   color: white;
   border: none;
   border-radius: ${theme.borderRadius.md};

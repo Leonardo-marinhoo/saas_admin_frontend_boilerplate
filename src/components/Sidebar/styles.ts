@@ -15,10 +15,11 @@ export const Aside = styled.aside<{ $collapsed?: boolean }>`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 0 0 24px 24px;
+  padding: 0 0 24px 0x;
   z-index: 1200;
   transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   overflow: visible;
+  background-color: #15152e;
 
   @media (max-width: ${theme.breakpoints.sm}) {
     position: static;
@@ -42,7 +43,7 @@ export const Logo = styled.div<{ $collapsed?: boolean }>`
   justify-content: center;
   position: relative;
   margin-bottom: ${({ theme }) => theme.contentPaddingTop}px;
-  background-color: white;
+  background-color: #0b0b18;
 `;
 
 export const LogoImage = styled.img`
@@ -103,7 +104,7 @@ export const NavLink = styled.div<{ $active?: boolean; $collapsed?: boolean }>`
   width: 100%;
   padding: 12px 8px;
   border-radius: 12px;
-  color: #67748e;
+  color: #ffffff;
   font-size: 0.875rem;
   text-decoration: none;
   cursor: pointer;
@@ -111,7 +112,7 @@ export const NavLink = styled.div<{ $active?: boolean; $collapsed?: boolean }>`
   display: flex;
   align-items: center;
   gap: 10px;
-  background: ${({ $active }) => ($active ? "#fff" : "none")};
+  background: ${({ $active }) => ($active ? "#464698" : "none")};
   color: ${({ $active }) => ($active ? theme.colors.primary : "#67748e")};
   font-weight: ${({ $active }) => ($active ? 600 : 300)};
   box-shadow: ${({ $active }) =>
@@ -128,6 +129,8 @@ export const NavLink = styled.div<{ $active?: boolean; $collapsed?: boolean }>`
     margin-left: ${({ $collapsed }) => ($collapsed ? "0" : "8px")};
     overflow: hidden;
     white-space: nowrap;
+    color: white;
+    font-weight: 500;
   }
 `;
 
@@ -135,9 +138,8 @@ export const IconWrapper = styled.span<{ $active?: boolean }>`
   display: flex;
   align-items: center;
   justify-content: center;
-  background: ${({ $active, theme }) =>
-    $active ? theme.colors.primary : "#fff"};
-  color: ${({ $active }) => ($active ? "#fff" : "inherit")};
+  background: ${({ $active, theme }) => ($active ? "#fff" : "#fff")};
+  color: ${({ $active }) => ($active ? "black" : "inherit")};
   border-radius: 6px;
   width: 32px;
   height: 32px;

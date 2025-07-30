@@ -481,7 +481,7 @@ export const CardMainInfo = styled.div`
 `;
 
 export const CardNumber = styled.h5`
-  font-size: 18px;
+  font-size: 14px;
   font-weight: 400;
   font-family: "Poppins", sans-serif;
   letter-spacing: 1px;

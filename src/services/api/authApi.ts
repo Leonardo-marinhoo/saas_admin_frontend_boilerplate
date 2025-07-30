@@ -27,6 +27,7 @@ export const authApi = createApi({
         },
       }),
       providesTags: ["User"],
+      keepUnusedDataFor: 0,
     }),
   }),
 });
