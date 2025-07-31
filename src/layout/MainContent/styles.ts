@@ -5,7 +5,7 @@ export const MainContentWrapper = styled.main<{
   hideSidebar?: boolean;
   collapsed?: boolean;
 }>`
-  padding-top: ${theme.headerHeight}px;
+  padding-top: 5rem;
   padding-left: ${({ hideSidebar, collapsed }) =>
     hideSidebar ? 0 : collapsed ? "80px" : "250px"};
 

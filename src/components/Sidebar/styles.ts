@@ -3,6 +3,7 @@ import { theme } from "../../styles/theme";
 
 export const Aside = styled.aside<{ $collapsed?: boolean }>`
   position: fixed;
+  padding-top: 0.5rem;
   top: 0;
   left: 0;
   height: 100vh;
@@ -19,7 +20,6 @@ export const Aside = styled.aside<{ $collapsed?: boolean }>`
   z-index: 1200;
   transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   overflow: visible;
-  background-color: #15152e;
 
   @media (max-width: ${theme.breakpoints.sm}) {
     position: static;
@@ -29,6 +29,19 @@ export const Aside = styled.aside<{ $collapsed?: boolean }>`
     padding: 0;
     background: transparent;
   }
+`;
+
+export const AsideContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem;
+  background-color: white;
+  border-radius: 1rem;
+  height: 97%;
+  width: 93%;
+  margin: 0 auto;
+  overflow: hidden;
+  box-shadow: 1px 1px 15px 5px rgba(0, 0, 0, 0.1);
 `;
 
 export const Logo = styled.div<{ $collapsed?: boolean }>`
@@ -43,7 +56,8 @@ export const Logo = styled.div<{ $collapsed?: boolean }>`
   justify-content: center;
   position: relative;
   margin-bottom: ${({ theme }) => theme.contentPaddingTop}px;
-  background-color: #0b0b18;
+  background-color: #1b1b51;
+  border-radius: 8px;
 `;
 
 export const LogoImage = styled.img`
@@ -101,6 +115,7 @@ export const Nav = styled.nav`
 `;
 
 export const NavLink = styled.div<{ $active?: boolean; $collapsed?: boolean }>`
+  /* margin-left: 0.5rem; */
   width: 100%;
   padding: 12px 8px;
   border-radius: 12px;
@@ -112,7 +127,7 @@ export const NavLink = styled.div<{ $active?: boolean; $collapsed?: boolean }>`
   display: flex;
   align-items: center;
   gap: 10px;
-  background: ${({ $active }) => ($active ? "#464698" : "none")};
+  background: ${({ $active }) => ($active ? "#ffffff" : "none")};
   color: ${({ $active }) => ($active ? theme.colors.primary : "#67748e")};
   font-weight: ${({ $active }) => ($active ? 600 : 300)};
   box-shadow: ${({ $active }) =>
@@ -129,8 +144,9 @@ export const NavLink = styled.div<{ $active?: boolean; $collapsed?: boolean }>`
     margin-left: ${({ $collapsed }) => ($collapsed ? "0" : "8px")};
     overflow: hidden;
     white-space: nowrap;
-    color: white;
-    font-weight: 500;
+    color: #212121;
+    font-weight: 400;
+    font-family: "Poppins";
   }
 `;
 
@@ -138,11 +154,11 @@ export const IconWrapper = styled.span<{ $active?: boolean }>`
   display: flex;
   align-items: center;
   justify-content: center;
-  background: ${({ $active, theme }) => ($active ? "#fff" : "#fff")};
-  color: ${({ $active }) => ($active ? "black" : "inherit")};
+  background: ${({ $active, theme }) => ($active ? "#231380" : "#fff")};
+  color: ${({ $active }) => ($active ? "white" : "inherit")};
   border-radius: 6px;
-  width: 32px;
-  height: 32px;
+  width: 2.3rem;
+  height: 2.3rem;
   padding: 10px;
   box-shadow: 0 1px 4px 0 rgba(31, 38, 135, 0.07);
   transition: background 0.2s, color 0.2s;
@@ -153,7 +169,7 @@ export const LogoutButton = styled.button<{ $collapsed?: boolean }>`
   padding: 10px 32px;
   border: none;
   border-radius: 12px;
-  background: ${theme.colors.error};
+  background: #231380;
   color: #fff;
   font-size: 1rem;
   font-weight: 500;

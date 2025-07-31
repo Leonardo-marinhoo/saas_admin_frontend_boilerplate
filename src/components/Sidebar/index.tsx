@@ -51,8 +51,9 @@ export function Sidebar({
 
   return (
     <S.Aside $collapsed={collapsed}>
-      <S.Logo $collapsed={collapsed}>
-        {/* <S.CollapseButtonWrapper>
+      <S.AsideContent>
+        <S.Logo $collapsed={collapsed}>
+          {/* <S.CollapseButtonWrapper>
           <S.CollapseButton
             aria-label={collapsed ? "Expandir menu" : "Colapsar menu"}
             onClick={(e) => {
@@ -68,36 +69,37 @@ export function Sidebar({
             )}
           </S.CollapseButton>
         </S.CollapseButtonWrapper> */}
-        <S.LogoLink href="#">
-          {collapsed ? (
-            <S.LogoImageCollapsed src={logoColapsed} alt="FoodIA Logo" />
-          ) : (
-            <>
-              <S.LogoImage src={logo} alt="FoodIA Logo" />
-            </>
-          )}
-        </S.LogoLink>
-      </S.Logo>
-      <S.Nav>
-        {sidebarLinks?.map((item) => (
-          <S.NavLink
-            as={Link}
-            to={item.to}
-            key={item.to}
-            $active={location.pathname === item.to}
-            $collapsed={collapsed}
-            onClick={onNavigate}
-          >
-            <S.IconWrapper $active={location.pathname === item.to}>
-              {item.icon}
-            </S.IconWrapper>
-            <span className="nav-text">{item.label}</span>
-          </S.NavLink>
-        ))}
-      </S.Nav>
-      <S.LogoutButton onClick={handleSignOut} $collapsed={collapsed}>
-        <span className="nav-text">Sair</span>
-      </S.LogoutButton>
+          <S.LogoLink href="#">
+            {collapsed ? (
+              <S.LogoImageCollapsed src={logoColapsed} alt="FoodIA Logo" />
+            ) : (
+              <>
+                <S.LogoImage src={logo} alt="FoodIA Logo" />
+              </>
+            )}
+          </S.LogoLink>
+        </S.Logo>
+        <S.Nav>
+          {sidebarLinks?.map((item) => (
+            <S.NavLink
+              as={Link}
+              to={item.to}
+              key={item.to}
+              $active={location.pathname === item.to}
+              $collapsed={collapsed}
+              onClick={onNavigate}
+            >
+              <S.IconWrapper $active={location.pathname === item.to}>
+                {item.icon}
+              </S.IconWrapper>
+              <span className="nav-text">{item.label}</span>
+            </S.NavLink>
+          ))}
+        </S.Nav>
+        <S.LogoutButton onClick={handleSignOut} $collapsed={collapsed}>
+          <span className="nav-text">Sair</span>
+        </S.LogoutButton>
+      </S.AsideContent>
     </S.Aside>
   );
 }

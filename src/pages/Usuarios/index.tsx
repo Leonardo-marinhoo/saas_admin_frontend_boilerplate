@@ -63,7 +63,7 @@ const Usuarios: React.FC = () => {
   return (
     <Container>
       <PageHeader
-        title="Usuários do Estabelecimento"
+        title="Usuários da Escola"
         actions={
           <S.AddButton type="button" onClick={handleOpenModal}>
             + Adicionar Usuário
@@ -140,8 +140,8 @@ const Usuarios: React.FC = () => {
               onChange={handleChange}
               required
             >
-              <option value="kitchen">Cozinha</option>
-              <option value="delivery">Entregador</option>
+              <option value="Professor">Professor</option>
+              <option value="Responsavel">Responsavel</option>
             </S.Select>
           </S.FormGroup>
           {formError && <S.Error>{formError}</S.Error>}

@@ -9,7 +9,7 @@ import Login from "./pages/Login";
 import EstablishmentInfoEdit from "./pages/EstablishmentInfoEdit";
 import Usuarios from "./pages/Usuarios";
 
-import ProductsPage from "./pages/Products";
+import ProductsPage from "./pages/Disciplinas";
 
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
   const { user, isAuthenticated, isLoading } = useAuth();
@@ -44,7 +44,7 @@ export function Routes() {
     <RouterRoutes>
       <Route path="/login" element={<Login />} />
 
-      <Route path="/pproducts" element={<ProductsPage />} />
+      <Route path="/disciplinas" element={<ProductsPage />} />
 
       <Route
         path="/establishment-info-edit"

@@ -13,8 +13,8 @@ export const DesktopHeaderWrapper = styled.header`
   justify-content: space-between;
   padding-left: 40px;
   padding-right: 40px;
-  padding-top: 16px;
-  background: white;
+  /* padding-top: 3rem; */
+  background: none;
   z-index: 1100;
   margin-bottom: ${theme.contentPaddingTop}px;
 

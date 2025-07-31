@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { theme } from "../../styles/theme";
 
 const HeaderContainer = styled.header`
-  background: white;
+  background: red !important;
   box-shadow: ${theme.shadows.sm};
   padding: ${theme.spacing.md} ${theme.spacing.lg};
   position: fixed;

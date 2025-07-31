@@ -42,12 +42,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         })
       );
       const roleType = result.user.role?.type || result.role_type;
-      if (roleType === "delivery") {
-        navigate("/pacotes");
-      } else if (roleType === "kitchen") {
-        navigate("/orders");
-      } else {
+      if (roleType === "Diretor") {
         navigate("/establishment-info-edit");
+      } else if (roleType === "Professor") {
+        navigate("/Disciplinas");
       }
     } catch (error) {
       throw new Error("Falha na autenticação");
@@ -59,10 +57,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     navigate("/login");
   };
   const verifyAuth = () => {
-    if (getMeError) {
-      alert("erro autenticação");
-    }
-    if (getMeData) {
+    // if (getMeError) {
+    //   alert("erro autenticação");
+    //   dispatch(logout());
+    //   navigate("/login");
+    // }
+    if (getMeData && !getMeError) {
       dispatch(
         setCredentials({
           user: { ...getMeData },
@@ -71,6 +71,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         })
       );
       alert("reautenticado");
+    } else {
+      dispatch(logout());
+      navigate("/login");
     }
   };
 
